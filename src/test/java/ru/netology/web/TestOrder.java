@@ -71,7 +71,7 @@ public class TestOrder {
         form.$(By.cssSelector("label[data-test-id=agreement]")).click();
         form.$(By.className("button")).click();
         $("p[data-test-id=order-success]").shouldHave(Condition.exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
-       }
+    }
 //
 //    @Test
 //    void validationLatinTest() throws InterruptedException {
@@ -85,17 +85,17 @@ public class TestOrder {
 //        Assertions.assertEquals(expected, actual);
 //    }
 
-        @Test
-        void validationLatinTest() throws InterruptedException {
-            open("http://localhost:9999/");
-            SelenideElement form = $("div[id=root]");
-            form.$(By.cssSelector("span[data-test-id=name] input")).setValue("Tretyakov Vladislav");
-            form.$(By.cssSelector("span[data-test-id=phone] input")).setValue("+79994445566");
-            form.$(By.cssSelector("label[data-test-id=agreement]")).click();
-            form.$(By.className("button")).click();
-            $(".input__sub").shouldHave(Condition.exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
-        }
-       }
+    @Test
+    void validationLatinTest() throws InterruptedException {
+        open("http://localhost:9999/");
+        SelenideElement form = $("div[id=root]");
+        form.$(By.cssSelector("span[data-test-id=name] input")).setValue("Tretyakov Vladislav");
+        form.$(By.cssSelector("span[data-test-id=phone] input")).setValue("+79994445566");
+        form.$(By.cssSelector("label[data-test-id=agreement]")).click();
+        form.$(By.className("button")).click();
+        $(".input__sub").shouldHave(Condition.exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+    }
+}
 
 //    @Test
 //    void wrongNumberTest() throws InterruptedException {
