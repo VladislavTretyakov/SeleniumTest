@@ -55,5 +55,14 @@ public class TestOrder {
         form.$("button").click();
         $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(Condition.exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
+
+    @Test
+    void noCheckboxTest() {
+        SelenideElement form = $("div[id=root]");
+        form.$("span[data-test-id=name] input").setValue("Третьяков Владислав");
+        form.$("span[data-test-id=phone] input").setValue("+79994445566");
+        form.$("button").click();
+        $("label[data-test-id=agreement].input_invalid").shouldHave(Condition.visible);
+    }
 }
 
