@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -63,6 +64,24 @@ public class TestOrder {
         form.$("span[data-test-id=phone] input").setValue("+79994445566");
         form.$("button").click();
         $("label[data-test-id=agreement].input_invalid").shouldHave(Condition.visible);
+    }
+
+    @Test
+    void noNameTest() {
+        SelenideElement form = $("div[id=root]");
+        form.$("span[data-test-id=phone] input").setValue("+79994445566");
+        form.$("label[data-test-id=agreement]").click();
+        form.$("button").click();
+        $("[data-test-id='name'].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
+    }
+
+    @Test
+    void noPhoneTest() {
+        SelenideElement form = $("div[id=root]");
+        form.$("span[data-test-id=name] input").setValue("Третьяков Владислав");
+        form.$("label[data-test-id=agreement]").click();
+        form.$("button").click();
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 }
 
